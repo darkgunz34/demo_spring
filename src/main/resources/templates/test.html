@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Index</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+    <body>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
+        <div sec:authorize="hasRole('ADMIN')">
+            Contenu visible pour les administrateurs. Par conséquent, vous pouvez vous déconnecter :)
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Se déconnecter"/>
+            </form>
+        </div>
+
+        <div sec:authorize="hasRole('USER')">
+            Contenu visible pour les utilisateur. Par conséquent, vous pouvez vous déconnecter :)
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Se déconnecter"/>
+            </form>
+        </div>
+
+        <div sec:authorize="hasRole('ROLE_ANONYMOUS')">
+            Contenu visible pour les utilisateur non authentifier. Par conséquent, vous pouvez vous connecter :)
+            <a href="login">Se connecter</a>
+        </div>
+
+        <div>
+            <h2>données utilisable :</h2>
+            <br/>
+<!--            User: <span sec:authentication="name">Inconnu</span>
+            Spring Roles: <span sec:authentication="principal.authorities">Inconnu</span>
+-->
+        </div>
+    </body>
+</html>
