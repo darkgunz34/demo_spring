@@ -12,6 +12,10 @@
     <body>
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 
+        <div th:if="${param.success}">
+            <div class="alert alert-info">Création du compte avec succès. Vous pouvez vous connecter!</div>
+        </div>
+
         <div sec:authorize="hasRole('ADMIN')">
             Contenu visible pour les administrateurs. Par conséquent, vous pouvez vous déconnecter :)
             <form th:action="@{/logout}" method="post">
@@ -19,7 +23,7 @@
             </form>
         </div>
 
-        <div sec:authorize="hasRole('USER')">
+        <div sec:authorize="hasRole('UTILISATEUR')">
             Contenu visible pour les utilisateur. Par conséquent, vous pouvez vous déconnecter :)
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Se déconnecter"/>

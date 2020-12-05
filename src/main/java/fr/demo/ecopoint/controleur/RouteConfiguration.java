@@ -16,9 +16,13 @@ public class RouteConfiguration implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/test").setViewName("test");
+        registry.addViewController("/terme").setViewName("terme");
 
         //page de connexion
         registry.addViewController("/login").setViewName("login");
+
+        //page pour les utilisateurs uniquement
+        registry.addViewController("/utilisateur").setViewName("utilisateur/utilisateur");
 
         //page pour administrateur
         registry.addViewController("/admin/connecter").setViewName("admin/connecter");
