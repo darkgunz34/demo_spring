@@ -5,16 +5,18 @@ import fr.demo.ecopoint.model.service.UserService;
 import fr.demo.ecopoint.web.dto.entities.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.*;
 
 /**
- * Controlleur pour la creation d'un compte
+ * Controller pour la creation d'un compte
  */
 @Controller
 @RequestMapping("/creerCompte")
@@ -29,8 +31,9 @@ public class CreerCompte {
     }
 
     @GetMapping
-    public String showPageCreateAccount(){
-        return "creerCompte";
+    public String showPageCreateAccount(Model model,HttpServletRequest req) throws Exception {
+        String test = req.getHeader("user-agent");
+        throw new Exception(test);
     }
 
     @PostMapping
